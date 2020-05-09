@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <script type="text/javascript" src="https://miro.com/app/static/sdk.1.1.js"></script>
-    <script type="text/javascript">
+  <script type="text/javascript" src="https://miro.com/app/static/sdk.1.1.js"></script>
+  <script type="text/javascript">
     miro.onReady(() => {
       miro.initialize({
         extensionPoints: {
@@ -12,17 +13,18 @@
             onClick: () => {
               alert('Hi!')
               await miro.board.widgets.create({
-  "type": "card",
-  "title": "developer card",
-  "style": {
-    "backgroundColor": "#ff00ff"
-  }
-})
+                "type": "card",
+                "title": "developer card",
+                "style": {
+                  "backgroundColor": "#ff00ff"
+                }
+              })
             }
           }
         }
       })
     })
-    </script>
+  </script>
 </head>
+
 </html>
