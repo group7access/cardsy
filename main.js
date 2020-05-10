@@ -8,6 +8,7 @@ miro.onReady(() => {
         positionPriority: 1,
         onClick: async () => {
           const authorized = await miro.isAuthorized()
+          console.log(authorized);
 					if (authorized) {
 						generateCards();
 					} else {
