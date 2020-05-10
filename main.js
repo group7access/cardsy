@@ -1,7 +1,7 @@
 miro.onReady(() => {
   miro.initialize({
     extensionPoints: {
-      widgetContextMenu: {
+      bottomBar: {
         title: "Generate Card",
         svgIcon:
           '<circle cx="12" cy="12" r="9" fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="2"/>',
@@ -14,8 +14,12 @@ miro.onReady(() => {
           if (selectedWidgets.length == 0) {
             miro.showNotification("Please select some shapes");
           } else {
-            //prompt if user want to delete the original objects
-
+            //prompt
+                //show number of selected eligible widget
+                    // check list
+                    // delete original content
+                    // include in a frame? (textfield to accept frame title)
+            
             // create respective cards for selected widget
             let generatedCards = [];
             let x = 0;
@@ -45,6 +49,7 @@ miro.onReady(() => {
             await miro.board.selection.selectWidgets(generatedCardsId);
             // zoom to the first card generated
             await miro.board.viewport.zoomToObject(generatedCards);
+            // create a frame and put all the generated card inside frame, if user has prompted
           }
         },
       },
