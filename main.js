@@ -4,7 +4,7 @@ miro.onReady(() => {
       bottomBar: {
         title: "Generate Card",
         svgIcon:
-          '<circle cx="12" cy="12" r="7" fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="4"/>',
+          '<circle cx="12" cy="12" r="7" fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="2"/>',
         positionPriority: 1,
         onClick: async () => {
           // get selected widgets
