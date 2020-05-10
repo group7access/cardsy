@@ -19,7 +19,7 @@ miro.onReady(() => {
                     // check list
                     // delete original content
                     // include in a frame? (textfield to accept frame title)
-            let response = await miro.board.ui.openModal('dialogModal.html');
+            let response = await miro.board.ui.openModal('https://yashbhalodi.github.io/miroPlugin/dialogModal.html');
             console.log(response);
             // create respective cards for selected widget
             let generatedCards = [];
