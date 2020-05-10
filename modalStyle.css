@@ -1,5 +1,5 @@
 .roundedModal {
   border-radius: 30px;
-  border: 1px solid #a9d5ee;
+  border: 1px solid transparent;
   padding: 20px;
 }
