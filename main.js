@@ -5,15 +5,25 @@ miro.onReady(() => {
   miro.initialize({
     extensionPoints: {
       bottomBar: {
-        title: "Generate Card",
+        title: "Generate Cards",
         svgIcon: icon,
         positionPriority: 1,
         onClick: async () => {
           // get selected widgets
           let selectedWidgets = await miro.board.selection.get();
+          let selectedShapes = [];
+          let conversionShapeCount = 0;
 
+          // filtering out shapes from all the selected widgets.
+          for (element of selectedWidgets) {
+            if(element.type === "SHAPE" || element.type === "TEXT" || element.type === "STICKER"){
+              selectedShapes.push(element);
+            }
+          }
+
+          conversionShapeCount = selectedShapes.length;
           // if selection is empty, exit gracefully.
-          if (selectedWidgets.length == 0) {
+          if (selectedShapes.length == 0) {
             miro.showNotification("Please select at least one shape");
           } else {
             //prompt
@@ -48,6 +58,8 @@ miro.onReady(() => {
             }
             // select the generated card to accomodate user's quick actions
             await miro.board.selection.selectWidgets(generatedCardsId);
+            console.log(`Cardsy generated ${conversionShapeCount} cards for you.`);
+            miro.showNotification(`Generated ${conversionShapeCount} cards.`);
             // zoom to the frame generated
             // create a frame and put all the generated card inside frame, if user has prompted
           }
