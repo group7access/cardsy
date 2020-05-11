@@ -1,5 +1,5 @@
 # Cardsy
-## Easily generate any number of cards from selected widgets on your miro boards.
+## Easily generate any number of cards of selected widgets on your miro boards.
 
 ### Update
 * Your new **cards** will have the same color as respective original widget.
