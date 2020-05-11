@@ -3,16 +3,20 @@
 
 ### Update
 * Your new **cards** will have the same color as respective original widget.
-* Your new **cards** will have the same tags assigned as respective **Stickeys**
+* Your new **cards** will have the same **tags** assigned as respective **Stickeys**
 
 ### Use case
 You have filled your board with your precious ideas in various widgets like **Text**, **Sticky**, or **Shapes**.
 
-Now, you would like to take advantages of **miro cards** properties like 
+Now, you realize you should take advantages of **miro cards** properties like 
 * assigning a date (could be a deadline)
 * assigning a team member 
 * writing detailed description
 * use them in your kanban framework.
+
+But manually creating each **card** with the same content as **Text**,**Sticky** or **Shape** would take lot of your time and effort.
+
+**Cardsy will do that for you in a single click.**
 
 ## Add Cardsy to any miro board
 
