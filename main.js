@@ -1,10 +1,11 @@
 miro.onReady(() => {
+  const icon = '<svg> <rect x="1" y="3" rx="1" ry="1" width="18" height="12" fill-rule="evenodd" fill="#ffffff" stroke="currentColor" stroke-width="2" opacity="1.0"/><rect x="1" y="3" rx="0" ry="1" width="2" height="12" fill-rule="evenodd" fill="currentColor" opacity="1.0" /><rect x="5" y="10" rx="1" ry="1" width="18" height="12" fill-rule="evenodd" fill="#ffffff" stroke="currentColor" stroke-width="2" opacity="1.0"/><rect x="5" y="10" rx="0" ry="1" width="2" height="12" fill-rule="evenodd" fill="currentColor" opacity="1.0" /><rect x="9" y="18" rx="0.5" ry="0.5" width="5" height="2" fill-rule="evenodd" fill="currentColor" opacity="0.3" /><rect x="16" y="18" rx="0.5" ry="0.5" width="5" height="2" fill-rule="evenodd" fill="currentColor" opacity="0.3" /></svg>';
+
   miro.initialize({
     extensionPoints: {
       bottomBar: {
         title: "Generate Cards",
-        svgIcon:
-          '<circle cx="12" cy="12" r="9" fill="none" fill-rule="evenodd" stroke="currentColor" stroke-width="2"/>',
+        svgIcon: icon,
         positionPriority: 1,
         onClick: async () => {
           const authorized = await miro.isAuthorized();
@@ -43,7 +44,7 @@ async function generateCards() {
   conversionShapeCount = selectedShapes.length;
   // if selection is empty, exit gracefully.
   if (selectedShapes.length == 0) {
-    miro.showNotification("Please select at least one shape");
+    miro.showNotification("Select at least one shape, sticker or text");
   } else {
     //prompt
     // show number of selected eligible widget
@@ -53,17 +54,17 @@ async function generateCards() {
     // create respective cards for selected widget
     let generatedCards = [];
     let x = 0.0;
-    let y = -200.0;
+    let y = 0.0;
     let verticalItemCount = 0;
     let maxVerticalItems = Math.floor(Math.sqrt(conversionShapeCount));
     for (element of selectedShapes) {
       let c = await generatCardFor(element, x, y);
-      y = y + 120.0;
+      y = y + 100.0;
       verticalItemCount++;
-      if (verticalItemCount > maxVerticalItems) {
-        x = x + 300.0;
+      if (verticalItemCount >= maxVerticalItems) {
+        x = x + 330.0;
         verticalItemCount = 0;
-        y = -200.0;
+        y = 0.0;
       }
       generatedCards.push(c);
     }
@@ -73,8 +74,10 @@ async function generateCards() {
     }
     // select the generated card to accomodate user's quick actions
     await miro.board.selection.selectWidgets(generatedCardsId);
+    await miro.board.viewport.zoomToObject(generatedCardsId);
     console.log(`Cardsy generated ${conversionShapeCount} cards for you.`);
     miro.showNotification(`Cardsy generated ${conversionShapeCount} cards.`);
+    
     // zoom to the frame generated
     // create a frame and put all the generated card inside frame, if user has prompted
   }
