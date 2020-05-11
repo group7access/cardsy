@@ -1,6 +1,10 @@
 # Cardsy
 ## Easily generate any number of cards from selected widgets on your miro boards.
 
+### Update
+* Your new **cards** will have the same color as respective original widget.
+* Your new **cards** will have the same tags assigned as respective **Stickeys**
+
 ### Use case
 You have filled your board with your precious ideas in various widgets like **Text**, **Sticky**, or **Shapes**.
 
