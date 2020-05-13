@@ -95,11 +95,6 @@ async function generateCards(selectedWidget) {
     }
     // select the generated card to accomodate user's quick actions
     await miro.board.selection.selectWidgets(generatedCardsId);
-    try {
-      await miro.board.viewport.zoomToObject(generatedCardsId);
-    } catch (e) {
-      console.log("A Deprecated API was used");
-    }
     console.log(`Cardsy generated ${conversionShapeCount} cards for you.`);
     miro.showNotification(`Cardsy generated ${conversionShapeCount} cards.`);
 
