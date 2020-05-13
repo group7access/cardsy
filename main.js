@@ -5,7 +5,6 @@ miro.onReady(() => {
   miro.initialize({
     extensionPoints: {
       getWidgetMenuItems: async (widgets, editmode) => {
-        console.log(widgets);
         let pluginValid;
         for (const element of widgets) {
           if (
