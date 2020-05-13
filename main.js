@@ -82,7 +82,7 @@ async function generateCards(selectedWidget) {
       let c = await generatCardFor(element, x, y);
       y = y + 100.0;
       verticalItemCount++;
-      if (verticalItemCount >= maxVerticalItems) {
+      if (verticalItemCount > maxVerticalItems) {
         x = x + 330.0;
         verticalItemCount = 0;
         y = selectedWidgets[0].y + 100.0;
