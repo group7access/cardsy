@@ -74,7 +74,7 @@ async function generateCards(selectedWidget) {
     // include in a frame? (textfield to accept frame title)
     // create respective cards for selected widget
     let generatedCards = [];
-    let x = selectedWidgets[0].x + 50.0;
+    let x = selectedWidgets[0].x;
     let y = selectedWidgets[0].y + 100.0;
     let verticalItemCount = 0;
     let maxVerticalItems = Math.floor(Math.sqrt(conversionShapeCount));
@@ -85,7 +85,7 @@ async function generateCards(selectedWidget) {
       if (verticalItemCount >= maxVerticalItems) {
         x = x + 330.0;
         verticalItemCount = 0;
-        y = selectedWidgets[0].y + 50.0;
+        y = selectedWidgets[0].y + 100.0;
       }
       generatedCards.push(c);
     }
