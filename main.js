@@ -5,41 +5,26 @@ miro.onReady(() => {
   miro.initialize({
     extensionPoints: {
       getWidgetMenuItems: async (widgets, editmode) => {
-        let pluginValid;
-        for (const element of widgets) {
-          if (
-            element.type === "STICKER" ||
-            element.type === "SHAPE" ||
-            element.type === "TEXT"
-          ) {
-            pluginValid = true;
-            break;
-          }
-          pluginValid = false;
-        }
-
-        if (pluginValid) {
-          return [
-            {
-              tooltip: "Generate Cards",
-              svgIcon: icon,
-              onClick: async () => {
-                const authorized = await miro.isAuthorized();
-                if (authorized) {
-                  generateCards(widgets);
-                } else {
-                  miro.board.ui.openModal("not-authorized.html").then((res) => {
-                    if (res === "success") {
-                      generateCards(widgets);
-                    }
-                  });
-                }
-              },
+        console.log(editmode);
+        console.log(widgets);
+        return [
+          {
+            tooltip: "Generate Cards",
+            svgIcon: icon,
+            onClick: async () => {
+              const authorized = await miro.isAuthorized();
+              if (authorized) {
+                generateCards(widgets);
+              } else {
+                miro.board.ui.openModal("not-authorized.html").then((res) => {
+                  if (res === "success") {
+                    generateCards(widgets);
+                  }
+                });
+              }
             },
-          ];
-        } else {
-          return [];
-        }
+          },
+        ];
       },
     },
   });
@@ -52,15 +37,13 @@ async function generateCards(selectedWidget) {
   let conversionShapeCount = 0;
 
   // filtering out shapes from all the selected widgets.
-  for (element of selectedWidgets) {
-    if (
-      element.type === "SHAPE" ||
-      element.type === "TEXT" ||
-      element.type === "STICKER"
-    ) {
-      selectedShapes.push(element);
-    }
-  }
+  selectedShapes = selectedWidgets.filter((item) => {
+    return item.type === "SHAPE" ||
+      item.type === "TEXT" ||
+      item.type === "STICKER"
+      ? true
+      : false;
+  });
 
   conversionShapeCount = selectedShapes.length;
   // if selection is empty, exit gracefully.
@@ -97,9 +80,6 @@ async function generateCards(selectedWidget) {
     await miro.board.selection.selectWidgets(generatedCardsId);
     console.log(`Cardsy generated ${conversionShapeCount} cards for you.`);
     miro.showNotification(`Cardsy generated ${conversionShapeCount} cards.`);
-
-    // zoom to the frame generated
-    // create a frame and put all the generated card inside frame, if user has prompted
   }
 }
 
