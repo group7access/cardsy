@@ -48,11 +48,11 @@ async function generateCards() {
   // check list
   // delete original content
   // include in a frame? (textfield to accept frame title)
-
-  let cardsGenerated = selectedWidgets.map(async (item) => {
+  let cardsGenerated = [];
+  for (const item of selectedWidgets) {
     let c = await generatCardFor(item, item.x + 800, item.y);
-    return c;
-  });
+    cardsGenerated.push(c);
+  }
 
   let cardsID = cardsGenerated.map((item) => item.id);
 
