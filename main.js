@@ -38,23 +38,23 @@ async function generateCards() {
       : false;
   });
 
-  if(selectedWidgets.length == 0) {
+  if (selectedWidgets.length == 0) {
     miro.showNotification("Select atleast one sticker, shape or text");
     return;
   }
 
-    //prompt
-    // show number of selected eligible widget
-    // check list
-    // delete original content
-    // include in a frame? (textfield to accept frame title)
+  //prompt
+  // show number of selected eligible widget
+  // check list
+  // delete original content
+  // include in a frame? (textfield to accept frame title)
 
-  let cardsGenerated = selectedWidgets.map((item)=>{
-    let c = await generatCardFor(item,item.x+800,item.y);
+  let cardsGenerated = selectedWidgets.map(async (item) => {
+    let c = await generatCardFor(item, item.x + 800, item.y);
     return c;
   });
 
-  let cardsID = cardsGenerated.map((item)=>item.id);
+  let cardsID = cardsGenerated.map((item) => item.id);
 
   await miro.board.selection.selectWidgets(cardsID);
   console.log(`Cardsy generated ${cardsID.length} cards for you.`);
