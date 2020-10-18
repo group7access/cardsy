@@ -2,7 +2,7 @@
 
 ## Easily generate any number of cards of selected widgets on your miro boards.
 
-[Watch short video](https://www.loom.com/share/fe1207297d644cf590e2e4c8727e64d9) on what Cardsy does for you.
+[Watch short video](https://www.loom.com/share/1e950d48b128460e929753d15f97ac70) on what Cardsy does for you.
 
 ### Update
 
