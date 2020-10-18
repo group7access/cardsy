@@ -11,11 +11,11 @@ miro.onReady(() => {
         onClick: async () => {
           const authorized = await miro.isAuthorized();
           if (authorized) {
-            generateCards(widgets);
+            generateCards();
           } else {
             miro.board.ui.openModal("not-authorized.html").then((res) => {
               if (res === "success") {
-                generateCards(widgets);
+                generateCards();
               }
             });
           }
@@ -25,7 +25,7 @@ miro.onReady(() => {
   });
 });
 
-async function generateCards(selectedWidget) {
+async function generateCards() {
   // get selected widgets
   let selectedWidgets = await miro.board.selection.get();
   let selectedShapes = [];
