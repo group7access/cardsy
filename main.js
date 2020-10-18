@@ -4,27 +4,22 @@ miro.onReady(() => {
 
   miro.initialize({
     extensionPoints: {
-      getWidgetMenuItems: async (widgets, editmode) => {
-        console.log(editmode);
-        console.log(widgets);
-        return [
-          {
-            tooltip: "Generate Cards",
-            svgIcon: icon,
-            onClick: async () => {
-              const authorized = await miro.isAuthorized();
-              if (authorized) {
+      bottomBar: {
+        title: "Cardsy",
+        tooltip: "Generate Cards",
+        svgIcon: icon,
+        onClick: async () => {
+          const authorized = await miro.isAuthorized();
+          if (authorized) {
+            generateCards(widgets);
+          } else {
+            miro.board.ui.openModal("not-authorized.html").then((res) => {
+              if (res === "success") {
                 generateCards(widgets);
-              } else {
-                miro.board.ui.openModal("not-authorized.html").then((res) => {
-                  if (res === "success") {
-                    generateCards(widgets);
-                  }
-                });
               }
-            },
-          },
-        ];
+            });
+          }
+        },
       },
     },
   });
