@@ -28,11 +28,9 @@ miro.onReady(() => {
 async function generateCards() {
   // get selected widgets
   let selectedWidgets = await miro.board.selection.get();
-  let selectedShapes = [];
-  let conversionShapeCount = 0;
 
   // filtering out shapes from all the selected widgets.
-  selectedShapes = selectedWidgets.filter((item) => {
+  selectedWidgets = selectedWidgets.filter((item) => {
     return item.type === "SHAPE" ||
       item.type === "TEXT" ||
       item.type === "STICKER"
@@ -40,42 +38,27 @@ async function generateCards() {
       : false;
   });
 
-  conversionShapeCount = selectedShapes.length;
-  // if selection is empty, exit gracefully.
-  if (selectedShapes.length == 0) {
-    miro.showNotification("Select at least one shape, sticker or text");
-  } else {
+  if(selectedWidgets.length == 0) {
+    miro.showNotification("Select atleast one sticker, shape or text");
+    return;
+  }
+
     //prompt
     // show number of selected eligible widget
     // check list
     // delete original content
     // include in a frame? (textfield to accept frame title)
-    // create respective cards for selected widget
-    let generatedCards = [];
-    let x = selectedWidgets[0].x;
-    let y = selectedWidgets[0].y + 100.0;
-    let verticalItemCount = 0;
-    let maxVerticalItems = Math.floor(Math.sqrt(conversionShapeCount));
-    for (element of selectedShapes) {
-      let c = await generatCardFor(element, x, y);
-      y = y + 100.0;
-      verticalItemCount++;
-      if (verticalItemCount > maxVerticalItems) {
-        x = x + 330.0;
-        verticalItemCount = 0;
-        y = selectedWidgets[0].y + 100.0;
-      }
-      generatedCards.push(c);
-    }
-    let generatedCardsId = [];
-    for (element of generatedCards) {
-      generatedCardsId.push(element.id);
-    }
-    // select the generated card to accomodate user's quick actions
-    await miro.board.selection.selectWidgets(generatedCardsId);
-    console.log(`Cardsy generated ${conversionShapeCount} cards for you.`);
-    miro.showNotification(`Cardsy generated ${conversionShapeCount} cards.`);
-  }
+
+  let cardsGenerated = selectedWidgets.map((item)=>{
+    let c = await generatCardFor(item,item.x+800,item.y);
+    return c;
+  });
+
+  let cardsID = cardsGenerated.map((item)=>item.id);
+
+  await miro.board.selection.selectWidgets(cardsID);
+  console.log(`Cardsy generated ${cardsID.length} cards for you.`);
+  miro.showNotification(`Cardsy generated ${cardsID.length} cards.`);
 }
 
 async function generatCardFor(object, x, y) {
