@@ -11,7 +11,7 @@
 
 ### Update
 
-- Now Cardsy can generate cards from mind map nodes as well.
+- Now Cardsy can generate cards from **mind map** nodes as well.
 
 ### Use case
 
