@@ -7,7 +7,9 @@ miro.onReady(() => {
       bottomBar: {
         title: "Cardsy",
         tooltip: "Generate Cards",
-        svgIcon: icon,
+        //svgIcon: icon,
+        toolbarSvgIcon: icon,
+        librarySvgIcon: icon,
         onClick: async () => {
           const authorized = await miro.isAuthorized();
           if (authorized) {
